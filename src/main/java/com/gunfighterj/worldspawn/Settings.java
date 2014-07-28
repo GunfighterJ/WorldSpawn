@@ -33,7 +33,16 @@ public class Settings
 		for (String worldMapping : worldSpawn.getConfig().getConfigurationSection("settings").getKeys(false))
 		{
 			String spawnWorld = worldSpawn.getConfig().getString("settings." + worldMapping + ".spawnWorld", worldSpawn.getServer().getWorlds().get(0).getName());
+			
 			World world = worldSpawn.getServer().getWorld(spawnWorld);
+
+			if (world == null)
+			{
+				worldSpawn.getLogger().warning("Could not find world " + spawnWorld);
+				worldSpawn.getLogger().warning("Skipping mappings for this world!");
+				continue;
+			}
+
 			for (String deathWorld : worldSpawn.getConfig().getStringList("settings." + worldMapping + ".deathWorlds"))
 			{
 				worldSpawn.getLogger().info("Adding mapping: " + deathWorld + " => " + spawnWorld);
