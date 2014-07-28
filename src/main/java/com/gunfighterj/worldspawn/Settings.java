@@ -11,7 +11,6 @@ import java.util.Map;
 public class Settings
 {
 	private WorldSpawn worldSpawn;
-	private FileConfiguration config;
 	private Map<String, World> worldMap;
 
 	public Settings(WorldSpawn plugin)
@@ -24,8 +23,7 @@ public class Settings
 			worldSpawn.getLogger().info("Creating default config");
 			worldSpawn.saveDefaultConfig();
 		}
-
-		this.config = worldSpawn.getConfig();
+		reload();
 	}
 
 	public void reload()
@@ -33,13 +31,13 @@ public class Settings
 		worldMap.clear();
 		worldSpawn.reloadConfig();
 
-		for (String worldMapping : config.getConfigurationSection("settings").getKeys(false))
+		for (String worldMapping : worldSpawn.getConfig().getConfigurationSection("settings").getKeys(false))
 		{
-			String spawnWorld = config.getString("settings." + worldMapping + ".spawnWorld", worldSpawn.getServer().getWorlds().get(0).getName());
+			String spawnWorld = worldSpawn.getConfig().getString("settings." + worldMapping + ".spawnWorld", worldSpawn.getServer().getWorlds().get(0).getName());
 			World world = worldSpawn.getServer().getWorld(spawnWorld);
-			for (String deathWorld : config.getStringList("settings." + worldMapping + ".deathWorlds"))
+			for (String deathWorld : worldSpawn.getConfig().getStringList("settings." + worldMapping + ".deathWorlds"))
 			{
-				worldSpawn.getLogger().info("Adding mapping: " + deathWorld + " => " + spawnWorld);
+				worldSpawn.getLogger().info("[WorldSpawn] Adding mapping: " + deathWorld + " => " + spawnWorld);
 				worldMap.put(deathWorld.toLowerCase(), world);
 			}
 		}
