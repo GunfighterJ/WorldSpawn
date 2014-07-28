@@ -39,6 +39,7 @@ public class Settings
 			World world = worldSpawn.getServer().getWorld(spawnWorld);
 			for (String deathWorld : config.getStringList("settings." + worldMapping + ".deathWorlds"))
 			{
+				worldSpawn.getLogger().info("Adding mapping: " + deathWorld + " => " + spawnWorld);
 				worldMap.put(deathWorld.toLowerCase(), world);
 			}
 		}
