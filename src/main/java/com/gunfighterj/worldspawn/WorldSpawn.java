@@ -16,12 +16,13 @@ import java.util.Map;
 
 public class WorldSpawn extends JavaPlugin implements Listener
 {
-	private Map<String, World> deathMap = new HashMap<>();
+	private Map<String, World> deathMap;
 	private Settings settings;
 
 	@Override
 	public void onEnable()
 	{
+		deathMap = new HashMap<>();
 		settings = new Settings(this);
 		getServer().getPluginManager().registerEvents(this, this);
 	}

@@ -12,11 +12,12 @@ public class Settings
 {
 	private WorldSpawn worldSpawn;
 	private FileConfiguration config;
-	private Map<String, World> worldMap = new HashMap<>();
+	private Map<String, World> worldMap;
 
 	public Settings(WorldSpawn plugin)
 	{
 		this.worldSpawn = plugin;
+		worldMap = new HashMap<>();
 
 		if (!new File(worldSpawn.getDataFolder(), "config.yml").exists())
 		{
