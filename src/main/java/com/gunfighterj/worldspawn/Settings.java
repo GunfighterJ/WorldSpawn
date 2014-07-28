@@ -23,7 +23,6 @@ public class Settings
 			worldSpawn.getLogger().info("Creating default config");
 			worldSpawn.saveDefaultConfig();
 		}
-		reload();
 	}
 
 	public void reload()

@@ -24,6 +24,7 @@ public class WorldSpawn extends JavaPlugin implements Listener
 	{
 		deathMap = new HashMap<>();
 		settings = new Settings(this);
+		settings.reload();
 		getServer().getPluginManager().registerEvents(this, this);
 	}
 
