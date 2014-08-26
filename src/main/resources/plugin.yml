@@ -1,9 +1,0 @@
-name: WorldSpawn
-main: com.gunfighterj.worldspawn.WorldSpawn
-version: 1.0
-author: [GunfighterJ]
-description: When you die in specific worlds, you respawn in the world defined in the config.
-commands:
-    worldspawn:
-        description: Reloads the config for WorldSpawn
-        usage: /worldspawn
